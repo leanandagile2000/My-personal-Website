@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Program Management Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --bg: #0d0c0b;
+    --bg2: #141311;
+    --fg: #f0ede8;
+    --fg2: #9a9390;
+    --fg3: #5a5754;
+    --accent: oklch(76% 0.12 72);
+    --accent2: oklch(76% 0.12 72 / 0.15);
+    --border: #2a2825;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+  .light-mode {
+    --bg: #f8f5f0;
+    --bg2: #eeeae3;
+    --fg: #100f0e;
+    --fg2: #6a6460;
+    --fg3: #aaa7a3;
+    --border: #ddd9d3;
+    --accent2: oklch(76% 0.12 72 / 0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: var(--bg);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled { border-color: var(--border); }
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--fg2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg2);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-right {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--fg2);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .theme-toggle:hover { color: var(--fg); border-color: var(--fg3); }
+
+  /* SECTIONS */
+  section {
+    padding: 120px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg3);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 60px;
+    background: var(--border);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 80px;
+    padding-top: 160px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg3);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 900px;
+    margin-bottom: 40px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-body {
+    max-width: 580px;
+    color: var(--fg2);
+    font-size: 17px;
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0c0b;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 28px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    color: var(--fg2);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--fg); border-color: var(--fg3); }
+
+  .hero-fig {
+    position: absolute;
+    top: 160px;
+    right: 48px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--fg3);
+    letter-spacing: 0.1em;
+    text-align: right;
+    line-height: 2;
+  }
+
+  /* ABOUT */
+  #about {
+    border-bottom: 1px solid var(--border);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-heading {
+    font-size: clamp(36px, 4vw, 54px);
+    line-height: 1.1;
+  }
+  .about-heading em { font-style: italic; color: var(--accent); }
+  .about-body {
+    color: var(--fg2);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  .about-body p + p { margin-top: 20px; }
+
+  /* IMPACT */
+  #impact {
+    border-bottom: 1px solid var(--border);
+  }
+  .impact-heading {
+    font-size: clamp(36px, 4vw, 54px);
+    margin-bottom: 72px;
+    max-width: 600px;
+  }
+  .impact-heading em { font-style: italic; color: var(--accent); }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+  .impact-card {
+    background: var(--bg);
+    padding: 48px;
+    transition: background 0.2s;
+  }
+  .impact-card:hover { background: var(--bg2); }
+  .impact-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--fg3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .impact-number {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .impact-desc {
+    color: var(--fg2);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* EXPERIENCE */
+  #experience {
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-heading {
+    font-size: clamp(36px, 4vw, 54px);
+    margin-bottom: 72px;
+  }
+  .exp-heading em { font-style: italic; color: var(--accent); }
+
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+  }
+  .exp-meta {
+    padding-top: 4px;
+  }
+  .exp-company {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg3);
+    letter-spacing: 0.06em;
+  }
+  .exp-industry {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--fg3);
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .exp-roles { display: flex; flex-direction: column; gap: 32px; }
+  .exp-role-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--fg);
+  }
+  .exp-role-desc {
+    color: var(--fg2);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* PRINCIPLES */
+  #principles {
+    border-bottom: 1px solid var(--border);
+  }
+  .principles-heading {
+    font-size: clamp(36px, 4vw, 54px);
+    margin-bottom: 72px;
+    max-width: 600px;
+  }
+  .principles-heading em { font-style: italic; color: var(--accent); }
+  .principles-list { display: flex; flex-direction: column; }
+  .principle-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    align-items: start;
+  }
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg3);
+    padding-top: 6px;
+    letter-spacing: 0.06em;
+  }
+  .principle-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .principle-body {
+    color: var(--fg2);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* CONTACT */
+  #contact {
+  }
+  .contact-heading {
+    font-size: clamp(36px, 4vw, 54px);
+    margin-bottom: 72px;
+  }
+  .contact-heading em { font-style: italic; color: var(--accent); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+  }
+  .contact-intro {
+    color: var(--fg2);
+    font-size: 18px;
+    line-height: 1.75;
+    max-width: 440px;
+  }
+  .contact-intro strong { color: var(--fg); font-weight: 500; }
+  .contact-details { display: flex; flex-direction: column; gap: 28px; }
+  .contact-row-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--fg3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .contact-row-value {
+    color: var(--fg);
+    font-size: 15px;
+  }
+  .contact-row-value a {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-row-value a:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  footer span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--fg3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* FADE IN ANIMATION */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <span class="nav-logo">P·M·L</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="theme-btn">Light</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">P01 · PROGRAM MANAGEMENT LEADER · [YOUR LOCATION]</div>
+  <h1 class="hero-title fade-up">
+    Turning complexity<br>into <em>clarity</em> and<br>momentum.
+  </h1>
+  <p class="hero-body fade-up">
+    Program Management leader with 15+ years driving large-scale, cross-functional initiatives — building the systems, alignment, and organizational muscle that make hard things ship.
+  </p>
+  <div class="hero-actions fade-up">
+    <a href="#contact" class="btn-primary">Get in touch →</a>
+    <a href="#experience" class="btn-ghost">Where I've led</a>
+  </div>
+  <div class="hero-fig">
+    FIG. 01 / [YOUR NAME]<br>
+    2026
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">§ 01 — About</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="about-heading fade-up">Fifteen years of programs that <em>actually landed</em>.</h2>
+    </div>
+    <div class="about-body fade-up">
+      <p>
+        I'm a Program Management leader who specializes in orchestrating complex, multi-team programs from ambiguity to execution. I've spent my career at the intersection of strategy and delivery — translating executive vision into roadmaps teams can actually run, and translating ground-level reality back up into signals leadership can act on.
+      </p>
+      <p>
+        I've scaled PM organizations, built portfolio governance frameworks from scratch, and led programs spanning engineering, product, finance, legal, and operations. I care less about the process artifact and more about the outcome it enables.
+      </p>
+      <p>
+        A few things I hold firmly: clarity is a force multiplier, good program management is invisible when it's working, and the best PMs make the people around them look better.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="section-label">§ 02 — Impact</div>
+  <h2 class="impact-heading fade-up">Numbers from the <em>work that mattered</em>.</h2>
+  <div class="impact-grid">
+    <div class="impact-card fade-up">
+      <div class="impact-tag">Org Transformation · [Company]</div>
+      <div class="impact-number">3×</div>
+      <div class="impact-desc">Scaled the PMO from 4 to 12 program managers while reducing delivery cycle time by 35% — without adding process overhead.</div>
+    </div>
+    <div class="impact-card fade-up">
+      <div class="impact-tag">Strategic Program · [Company]</div>
+      <div class="impact-number">$40M+</div>
+      <div class="impact-desc">Led a cross-functional program spanning 8 teams and 3 time zones, delivering a platform migration on time and under budget.</div>
+    </div>
+    <div class="impact-card fade-up">
+      <div class="impact-tag">Executive Alignment · [Company]</div>
+      <div class="impact-number">6 → 1</div>
+      <div class="impact-desc">Consolidated six competing roadmaps into a single prioritized portfolio, reducing context-switching and increasing on-time delivery from 52% to 89%.</div>
+    </div>
+    <div class="impact-card fade-up">
+      <div class="impact-tag">Risk &amp; Delivery · [Company]</div>
+      <div class="impact-number">−60%</div>
+      <div class="impact-desc">Reduced program escalations by 60% in the first year by introducing a lightweight early-warning system and weekly cross-team dependency reviews.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">§ 03 — Experience</div>
+  <h2 class="exp-heading fade-up">A <em>chronology</em>.</h2>
+  <div class="exp-list">
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-company">[Company A]</div>
+        <div class="exp-period">2021 — Present</div>
+        <div class="exp-industry">Enterprise SaaS<br>Technology</div>
+      </div>
+      <div class="exp-roles">
+        <div>
+          <div class="exp-role-title">Head of Program Management</div>
+          <div class="exp-role-desc">Leading a team of program managers across product, platform, and go-to-market programs. Built and scaled the PMO operating model, portfolio governance, and executive reporting cadence. Partner to CPO and CTO on strategic planning cycles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-company">[Company B]</div>
+        <div class="exp-period">2017 — 2021</div>
+        <div class="exp-industry">FinTech<br>Payments Infrastructure</div>
+      </div>
+      <div class="exp-roles">
+        <div>
+          <div class="exp-role-title">Senior Program Manager</div>
+          <div class="exp-role-desc">Owned end-to-end delivery of the platform's core infrastructure modernization — a two-year, $40M initiative involving 8 engineering teams, compliance, legal, and external vendors. Introduced OKR-linked program tracking adopted org-wide.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-company">[Company C]</div>
+        <div class="exp-period">2013 — 2017</div>
+        <div class="exp-industry">Healthcare Technology</div>
+      </div>
+      <div class="exp-roles">
+        <div>
+          <div class="exp-role-title">Program Manager</div>
+          <div class="exp-role-desc">Managed a portfolio of digital health programs from ideation through launch, coordinating across clinical, engineering, regulatory, and operations stakeholders. Established the first formal risk-management framework for software programs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-company">[Company D]</div>
+        <div class="exp-period">2010 — 2013</div>
+        <div class="exp-industry">Consulting</div>
+      </div>
+      <div class="exp-roles">
+        <div>
+          <div class="exp-role-title">Associate Program Manager</div>
+          <div class="exp-role-desc">Started as an analyst and moved into program delivery — supporting large enterprise transformation programs for clients in financial services and retail. Built a grounding in stakeholder management, executive communication, and structured problem-solving.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="section-label">§ 04 — Principles</div>
+  <h2 class="principles-heading fade-up">What I care about as a <em>program leader</em>.</h2>
+  <div class="principles-list">
+    <div class="principle-item fade-up">
+      <div class="principle-num">i.</div>
+      <div>
+        <div class="principle-title">Clarity is the deliverable.</div>
+        <div class="principle-body">The program plan isn't the output — understanding is. My job is to make sure every stakeholder knows what we're doing, why, what's at risk, and what they need to decide. When that's true, execution takes care of itself.</div>
+      </div>
+    </div>
+    <div class="principle-item fade-up">
+      <div class="principle-num">ii.</div>
+      <div>
+        <div class="principle-title">Surface problems early. Loudly.</div>
+        <div class="principle-body">The cost of hiding a risk is always higher than the cost of naming it. I build cultures where teams feel safe escalating, and where bad news travels fast — not because we panic, but because we act.</div>
+      </div>
+    </div>
+    <div class="principle-item fade-up">
+      <div class="principle-num">iii.</div>
+      <div>
+        <div class="principle-title">The lightest process that works.</div>
+        <div class="principle-body">Process is overhead until it isn't. I use the minimum structure that keeps a team aligned and moving — and I cut ruthlessly when the scaffold becomes the ceiling.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">§ 05 — Contact</div>
+  <h2 class="contact-heading fade-up">Get in <em>touch</em>.</h2>
+  <div class="contact-grid">
+    <div class="contact-intro fade-up">
+      <p>Open to conversations about <strong>senior program management leadership roles</strong> — PMO builds, large-scale transformation programs, and organizations that need a builder, not just a keeper.</p>
+    </div>
+    <div class="contact-details fade-up">
+      <div>
+        <div class="contact-row-label">Email</div>
+        <div class="contact-row-value"><a href="mailto:you@email.com">you [at] email.com</a></div>
+      </div>
+      <div>
+        <div class="contact-row-label">LinkedIn</div>
+        <div class="contact-row-value"><a href="https://linkedin.com/in/yourhandle" target="_blank">linkedin.com/in/yourhandle</a></div>
+      </div>
+      <div>
+        <div class="contact-row-label">Location</div>
+        <div class="contact-row-value">[Your City] · Open to remote</div>
+      </div>
+      <div>
+        <div class="contact-row-label">Availability</div>
+        <div class="contact-row-value">Actively exploring new roles</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 · [Your Name]</span>
+  <span>Program Management Leader</span>
+</footer>
+
+<!-- TWEAKS APP -->
+<div id="tweaks-root"></div>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "oklch(76% 0.12 72)",
+  "darkMode": true,
+  "name": "[Your Name]",
+  "location": "[Your Location]",
+  "heroTagline": "Turning complexity into clarity and momentum."
+}/*EDITMODE-END*/;
+
+function PortfolioTweaks() {
+  const result = useTweaks(TWEAK_DEFAULTS);
+  const tweaks = (result && result.tweaks) || TWEAK_DEFAULTS;
+  const setTweak = (result && result.setTweak) || (() => {});
+
+  React.useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--accent', tweaks.accentColor);
+    document.body.classList.toggle('light-mode', !tweaks.darkMode);
+    // Update name/location placeholders
+    document.querySelectorAll('.update-name').forEach(el => el.textContent = tweaks.name || '[Your Name]');
+    document.querySelectorAll('.update-location').forEach(el => el.textContent = tweaks.location || '[Your Location]');
+  }, [tweaks]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Identity">
+        <TweakText label="Your Name" value={tweaks.name} onChange={v => setTweak('name', v)} />
+        <TweakText label="Location" value={tweaks.location} onChange={v => setTweak('location', v)} />
+      </TweakSection>
+      <TweakSection label="Appearance">
+        <TweakToggle label="Dark Mode" value={tweaks.darkMode} onChange={v => setTweak('darkMode', v)} />
+        <TweakColor label="Accent Color" value={tweaks.accentColor} onChange={v => setTweak('accentColor', v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+const tweaksRoot = ReactDOM.createRoot(document.getElementById('tweaks-root'));
+tweaksRoot.render(<PortfolioTweaks />);
+</script>
+
+<script>
+  // Scroll effects
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-btn');
+  let isDark = true;
+  themeBtn.addEventListener('click', () => {
+    isDark = !isDark;
+    document.body.classList.toggle('light-mode', !isDark);
+    themeBtn.textContent = isDark ? 'Light' : 'Dark';
+  });
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="56" fill="#0d0c0b"/>
+    <rect x="8" y="14" width="40" height="5" rx="1" fill="#f0ede8" opacity="0.9"/>
+    <rect x="8" y="22" width="28" height="3" rx="1" fill="#9a9390" opacity="0.6"/>
+    <rect x="8" y="32" width="18" height="8" rx="0" fill="oklch(76% 0.12 72)" opacity="0.8"/>
+    <rect x="30" y="32" width="18" height="8" rx="0" fill="#2a2825"/>
+  </svg>
+</template>
+</body>
+</html>

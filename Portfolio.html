@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samir Karandikar — Program Management Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #161616;
+    --fg: #f0ede8;
+    --fg2: #9a9390;
+    --fg3: #4a4744;
+    --accent: #b85c38;
+    --border: #242424;
+    --max-w: 1080px;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-serif: 'Lora', Georgia, serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-color: var(--border); }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-links a.active { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 9px 20px;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* ── CONTAINER ── */
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 140px;
+    padding-bottom: 100px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .hero-kicker {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(72px, 10vw, 140px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 48px;
+  }
+  .hero-name .dim { color: var(--fg3); }
+  .hero-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 32px;
+  }
+  .hero-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--fg);
+    max-width: 760px;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--fg2);
+    max-width: 620px;
+    margin-bottom: 48px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 32px;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.82; }
+  .btn-ghost {
+    color: var(--fg2);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--fg); }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .sec-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 72px;
+  }
+  .sec-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .sec-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--fg);
+  }
+  .sec-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    align-self: center;
+    margin-left: 12px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-pull {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--fg);
+    position: sticky;
+    top: 88px;
+  }
+  .about-pull .accent { color: var(--accent); display: block; }
+  .about-prose {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--fg2);
+  }
+  .about-prose p + p { margin-top: 22px; }
+  .about-prose strong { color: var(--fg); font-weight: 600; }
+
+  /* ── IMPACT ── */
+  .impact-intro {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--fg2);
+    max-width: 700px;
+    margin-bottom: 64px;
+  }
+  .impact-rows { display: flex; flex-direction: column; }
+  .impact-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border-top: 1px solid var(--border);
+    padding: 44px 0;
+    transition: background 0.15s;
+    cursor: default;
+  }
+  .impact-row:hover {
+    background: var(--bg2);
+    margin: 0 -48px;
+    padding: 44px 48px;
+  }
+  .impact-stat { padding-top: 4px; }
+  .impact-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .impact-tag {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg3);
+  }
+  .impact-body {
+    padding-left: 48px;
+    border-left: 1px solid var(--border);
+    padding-top: 6px;
+  }
+  .impact-body-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 10px;
+  }
+  .impact-body-desc {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--fg2);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-rows { display: flex; flex-direction: column; }
+  .exp-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    border-top: 1px solid var(--border);
+    padding: 52px 0;
+    gap: 52px;
+    align-items: start;
+  }
+  .exp-left { padding-top: 4px; }
+  .exp-logo {
+    margin-bottom: 16px;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .exp-row:hover .exp-logo { opacity: 1; }
+  .exp-co {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 5px;
+  }
+  .exp-period {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg3);
+    margin-bottom: 12px;
+  }
+  .exp-sector {
+    display: inline-block;
+    border: 1px solid var(--border);
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg3);
+    padding: 3px 8px;
+  }
+  .exp-role {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .exp-desc {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--fg2);
+  }
+
+  /* ── PRINCIPLES ── */
+  .principles-rows { display: flex; flex-direction: column; }
+  .principle-row {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    border-top: 1px solid var(--border);
+    padding: 44px 0;
+    gap: 36px;
+    align-items: start;
+  }
+  .pr-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--fg3);
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .pr-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 10px;
+  }
+  .pr-body {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--fg2);
+  }
+
+  /* ── CREDENTIALS ── */
+  .cred-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+  .cred-item {
+    background: var(--bg);
+    padding: 36px 40px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    transition: background 0.15s;
+    min-height: 130px;
+  }
+  .cred-item:hover { background: var(--bg2); }
+  .cred-logo {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cred-logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  .cred-abbr {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    min-width: 76px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .cred-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .cred-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--fg);
+  }
+  .cred-org {
+    font-family: var(--font-serif);
+    font-size: 13px;
+    color: var(--fg3);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .cred-org em { color: var(--fg2); font-style: italic; }
+
+  /* ── PROJECTS ── */
+  .proj-rows { display: flex; flex-direction: column; }
+  .proj-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border-top: 1px solid var(--border);
+    padding: 52px 0;
+    gap: 52px;
+    align-items: start;
+  }
+  .proj-meta {
+    padding-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .proj-tag {
+    display: inline-block;
+    border: 1px solid var(--border);
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg3);
+    padding: 3px 8px;
+  }
+  .proj-link {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .proj-link:hover { opacity: 0.7; }
+  .proj-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 14px;
+  }
+  .proj-desc {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--fg2);
+  }
+
+  .proj-iframe-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .proj-iframe-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .proj-video-wrap {
+    margin-top: 28px;
+    border: 1px solid var(--border);
+  }
+  .proj-video-wrap video {
+    width: 100%;
+    display: block;
+    max-height: 480px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-statement {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--fg);
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+  .contact-statement em { font-style: normal; color: var(--accent); }
+  .contact-cols {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-intro {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--fg2);
+  }
+  .contact-intro strong { color: var(--fg); font-weight: 600; }
+  .contact-list { display: flex; flex-direction: column; gap: 28px; }
+  .contact-entry-label {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg3);
+    margin-bottom: 5px;
+  }
+  .contact-entry-val {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--fg);
+  }
+  .contact-entry-val a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .contact-entry-val a:hover { border-color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  footer span {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg3);
+  }
+  footer span:last-child { color: var(--accent); }
+
+  /* ── FADE IN ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .wrap, .hero-inner { padding: 0 20px; }
+    #hero { padding-bottom: 60px; }
+    .section { padding: 80px 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-pull { position: static; }
+    .impact-row { grid-template-columns: 1fr; }
+    .impact-row:hover { margin: 0; padding: 44px 0; }
+    .impact-body { padding-left: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 20px; margin-top: 16px; }
+    .exp-row, .proj-row { grid-template-columns: 1fr; gap: 20px; }
+    .contact-cols { grid-template-columns: 1fr; gap: 40px; }
+    .cred-grid { grid-template-columns: 1fr; }
+    footer { padding: 24px 20px; flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">Samir Karandikar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#credentials">Credentials</a></li>
+    <li><a href="#projects">Personal Projects</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" data-screen-label="00 Hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Program Management Leadership · 2026</div>
+    <h1 class="hero-name">Samir<br>Karan<span class="dim">dikar</span></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-headline">Program Management Leader that brings clarity, drives alignment and delivers outcomes.</p>
+    <p class="hero-sub">Program Management leader with 12+ years delivering $50M impact — AI systems, partner ecosystems, growth and transformations. I've scaled Program Management at startups from the ground up and in large matrixed organizations.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="#impact" class="btn-ghost">See the impact →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section" data-screen-label="01 About">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-pull fade-up">
+        The work<br>is in the<br>
+        <span class="accent">system.</span>
+      </div>
+      <div class="about-prose fade-up">
+        <p>I lead transformative programs spanning <strong>AI, partner ecosystems and growth</strong> — working directly with C-level executives to align strategy with execution. My experience bridges hypergrowth startups and Fortune 500 enterprises.</p>
+        <p>At Atlassian, I built the AI connector portfolio that unlocked Rovo AI search and chat, reaching 100K monthly active users in 3 months. I rearchitected the operational model between Atlassian and its Marketplace partners — cutting cloud migration delays by 55% and lifting partner satisfaction from 68% to 80%.</p>
+        <p>Before that, I established The Washington Post's program management function during a period of significant organizational scaling — leading a team through 40% YoY growth while improving delivery predictability, customer satisfaction, and PM effectiveness.</p>
+        <p>I care about <strong>delivering measurable business outcomes</strong> by building relationships, creating clarity in complex environments, and establishing systems that scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact" class="section" data-screen-label="02 Impact">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Impact</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <p class="impact-intro fade-up">Twelve years. $50M+ delivered. Each number below represents a team, a constraint, and a decision to do it properly.</p>
+    <div class="impact-rows">
+      <div class="impact-row fade-up">
+        <div class="impact-stat">
+          <div class="impact-num">100K</div>
+          <div class="impact-tag">Monthly Active Users</div>
+        </div>
+        <div class="impact-body">
+          <div class="impact-body-title">AI Connectors · Atlassian Rovo</div>
+          <div class="impact-body-desc">Owned delivery of 50 connectors that unlocked AI search and chat in Atlassian Rovo — reaching 100,000 monthly active users in just 3 months from launch.</div>
+        </div>
+      </div>
+      <div class="impact-row fade-up">
+        <div class="impact-stat">
+          <div class="impact-num">120h</div>
+          <div class="impact-tag">Saved per Week</div>
+        </div>
+        <div class="impact-body">
+          <div class="impact-body-title">Agentic AI · Atlassian Rovo</div>
+          <div class="impact-body-desc">Built and deployed agentic AI solutions on the Atlassian Rovo platform that saved internal teams 120 hours per week — turning productivity from a talking point into a measurable outcome.</div>
+        </div>
+      </div>
+      <div class="impact-row fade-up">
+        <div class="impact-stat">
+          <div class="impact-num">−55%</div>
+          <div class="impact-tag">Migration Delays</div>
+        </div>
+        <div class="impact-body">
+          <div class="impact-body-title">Partner Ecosystem · Atlassian Marketplace</div>
+          <div class="impact-body-desc">Rearchitected the operational model between Atlassian and its Marketplace partners. Cloud migration delays dropped 55%. Partner satisfaction rose from 68% to 80%. Designed and owned the global Partner Voice of Customer program.</div>
+        </div>
+      </div>
+      <div class="impact-row fade-up">
+        <div class="impact-stat">
+          <div class="impact-num">$4M</div>
+          <div class="impact-tag">Revenue Unlocked</div>
+        </div>
+        <div class="impact-body">
+          <div class="impact-body-title">Commerce &amp; Monetization · Bitbucket Cloud</div>
+          <div class="impact-body-desc">Owned the Commerce migration for Bitbucket Cloud and monetization of Bitbucket Packages and Runners — protecting $4M in revenue, migrating 80K+ paid workspaces, and unblocking 1M paid seats.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section" data-screen-label="03 Experience">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Experience</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="exp-rows">
+      <div class="exp-row fade-up">
+        <div class="exp-left">
+          <div class="exp-logo">
+            <!-- Atlassian logo mark -->
+            <svg width="110" height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.93 13.42c-.28-.36-.8-.28-1.02.1L.1 26.18a.62.62 0 0 0 .55.92h8.7a.63.63 0 0 0 .57-.36c1.6-3.56.7-8.66-.99-13.32z" fill="#2684FF"/>
+              <path d="M12.04 1.08a14.7 14.7 0 0 0-.18 15.5l4.22 8.16a.63.63 0 0 0 .57.36h8.7a.62.62 0 0 0 .55-.92L13.07 1.18a.63.63 0 0 0-1.03-.1z" fill="url(#atl-grad)"/>
+              <defs>
+                <linearGradient id="atl-grad" x1="17.6" y1="5.8" x2="11.1" y2="17.5" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#0052CC"/>
+                  <stop offset="100%" stop-color="#2684FF"/>
+                </linearGradient>
+              </defs>
+              <text x="30" y="23" font-family="sans-serif" font-size="15" font-weight="700" fill="#ffffff" letter-spacing="0.5">Atlassian</text>
+            </svg>
+          </div>
+          <div class="exp-co">Atlassian</div>
+          <div class="exp-period">Sept 2021 — Apr 2026</div>
+          <div class="exp-sector">Enterprise SaaS</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Senior Program Manager</div>
+          <div class="exp-desc">Owned the program portfolio for Atlassian Marketplace and Bitbucket Cloud across 20 teams. Delivered 50 AI connectors for Rovo reaching 100K MAU in 3 months. Built and deployed agentic AI solutions saving teams 120 hours/week. Led Commerce migration for Bitbucket Cloud and monetization of Packages &amp; Runners unlocking $4M in revenue. Rearchitected the operational model with Marketplace partners — cutting migration delays 55% and raising partner satisfaction from 68% to 80%.</div>
+        </div>
+      </div>
+      <div class="exp-row fade-up">
+        <div class="exp-left">
+          <div class="exp-logo">
+            <img src="logos/washington-post-wp.png" alt="The Washington Post" style="height:52px; width:auto; display:block; mix-blend-mode: screen;">
+          </div>
+          <div class="exp-co">The Washington Post</div>
+          <div class="exp-period">May 2017 — Sept 2021</div>
+          <div class="exp-sector">Media &amp; Technology</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Program Management Leader</div>
+          <div class="exp-desc">Established and led the program management function during a period of significant organizational scaling. Managed a team of 4 Program Managers and Scrum Masters through 40% YoY growth — implementing frameworks that improved delivery predictability by 16%, customer satisfaction by 13%, and program manager effectiveness by 14%.</div>
+        </div>
+      </div>
+      <div class="exp-row fade-up">
+        <div class="exp-left">
+          <div class="exp-logo">
+            <div style="display:inline-block; background:#fff; padding:7px 12px; line-height:0;">
+              <img src="logos/perficient.png" alt="Perficient" style="height:28px; width:auto; display:block;">
+            </div>
+          </div>
+          <div class="exp-co">Perficient Inc</div>
+          <div class="exp-period">Jul 2016 — May 2017</div>
+          <div class="exp-sector">Consulting</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Program Manager</div>
+          <div class="exp-desc">Led a cross-functional team of 30 designers, engineers and PMs to rebuild a billing system for a major ISP — delivering a complex technical program on time across a large, distributed team.</div>
+        </div>
+      </div>
+      <div class="exp-row fade-up">
+        <div class="exp-left">
+          <div class="exp-logo">
+            <!-- Cleon custom logo -->
+            <svg width="110" height="32" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="13" stroke="#b85c38" stroke-width="1.5"/>
+              <path d="M22 10 L10 16 L22 22" stroke="#b85c38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="16" cy="16" r="2.5" fill="#b85c38"/>
+              <text x="34" y="22" font-family="'Barlow Condensed', sans-serif" font-size="16" font-weight="700" fill="#f0ede8" letter-spacing="2">CLEON</text>
+            </svg>
+          </div>
+          <div class="exp-co">Cleon Inc</div>
+          <div class="exp-period">May 2013 — Jun 2019</div>
+          <div class="exp-sector">Founder · IT Services</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Founder &amp; CEO</div>
+          <div class="exp-desc">Founded and scaled an IT services firm from 0 to 15 billable consultants and $1.5M ARR — building the business development, delivery model, and team from the ground up.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" class="section" data-screen-label="05 Credentials">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Credentials</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-item fade-up">
+        <div class="cred-logo"><img src="logos/pmp.png" alt="PMP"></div>
+        <div class="cred-body">
+          <div class="cred-title">Project Management Professional</div>
+          <div class="cred-org">Project Management Institute</div>
+        </div>
+      </div>
+      <div class="cred-item fade-up">
+        <div class="cred-logo"><img src="logos/pmi-acp.png" alt="PMI-ACP"></div>
+        <div class="cred-body">
+          <div class="cred-title">Agile Certified Practitioner</div>
+          <div class="cred-org">Project Management Institute</div>
+        </div>
+      </div>
+      <div class="cred-item fade-up">
+        <div class="cred-logo"><img src="logos/ace.png" alt="Atlassian Certified Expert"></div>
+        <div class="cred-body">
+          <div class="cred-title">Atlassian Certified Expert</div>
+          <div class="cred-org">Atlassian</div>
+        </div>
+      </div>
+      <div class="cred-item fade-up">
+        <div class="cred-logo"><img src="logos/psm3.png" alt="PSM III"></div>
+        <div class="cred-body">
+          <div class="cred-title">Professional Scrum Master III</div>
+          <div class="cred-org">Scrum.org · <em>Fewer than 1,300 people worldwide hold this certification</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section" data-screen-label="06 Projects">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Personal Projects</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="proj-rows">
+      <div class="proj-row fade-up">
+        <div class="proj-meta">
+          <div class="proj-iframe-wrap">
+            <iframe src="https://npat-game-iota.vercel.app/" title="Name Place Animal Thing" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+          </div>
+        </div>
+        <div>
+          <div class="proj-title">Name, Place, Animal, Thing</div>
+          <div class="proj-desc">A browser-based multiplayer game where a random letter is picked each round and players race to enter a name, place, animal, and thing starting with that letter. Built end-to-end as a personal project — architecture, rules engine, real-time multiplayer, and deployment.</div>
+          <a class="proj-link" href="https://npat-game-iota.vercel.app/" target="_blank" style="display:inline-block; margin-top:16px;">Open live →</a>
+        </div>
+      </div>
+      <div class="proj-row fade-up">
+        <div class="proj-meta">
+          <video src="videos/rag-system.mp4" controls playsinline preload="metadata" style="width:100%; display:block; border:1px solid var(--border);"></video>
+        </div>
+        <div>
+          <div class="proj-title">AI System of Work</div>
+          <div class="proj-desc">A RAG-based personal knowledge assistant that indexes Gmail, Google Drive, Calendar, and Slack data locally. Retrieves relevant context using semantic similarity, keyword matching, and recency weighting — then passes it to Claude to generate cited answers. Your full data stays on your machine; only retrieved context goes to the API. Also includes to-do list, calendar view, email composition, and Slack integration.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section" data-screen-label="07 Contact">
+  <div class="wrap">
+    <div class="sec-header fade-up">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">Contact</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="contact-cols">
+      <div class="contact-list fade-up">
+        <div>
+          <div class="contact-entry-label">Email</div>
+          <div class="contact-entry-val"><a href="mailto:leanandagile2000@gmail.com">leanandagile2000@gmail.com</a></div>
+        </div>
+        <div>
+          <div class="contact-entry-label">LinkedIn</div>
+          <div class="contact-entry-val"><a href="https://www.linkedin.com/in/samir-karandikar/" target="_blank">linkedin.com/in/samir-karandikar</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 · Samir Karandikar</span>
+  <span>Program Management Leader</span>
+</footer>
+
+<!-- TWEAKS -->
+<div id="tweaks-root"></div>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#b85c38",
+  "bgColor": "#0a0a0a"
+}/*EDITMODE-END*/;
+
+function PortfolioTweaks() {
+  const result = useTweaks(TWEAK_DEFAULTS);
+  const tweaks = (result && result.tweaks) || TWEAK_DEFAULTS;
+  const setTweak = (result && result.setTweak) || (() => {});
+
+  React.useEffect(() => {
+    const r = document.documentElement;
+    r.style.setProperty('--accent', tweaks.accentColor);
+    r.style.setProperty('--bg', tweaks.bgColor);
+  }, [tweaks.accentColor, tweaks.bgColor]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Colors">
+        <TweakColor label="Accent Color" value={tweaks.accentColor} onChange={v => setTweak('accentColor', v)} />
+        <TweakColor label="Background" value={tweaks.bgColor} onChange={v => setTweak('bgColor', v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<PortfolioTweaks />);
+</script>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Active nav link
+  const sections = document.querySelectorAll('[data-screen-label]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => io.observe(s));
+
+  // Fade in
+  const fadeObs = new IntersectionObserver(entries => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="56" fill="#0a0a0a"/>
+    <rect x="0" y="0" width="80" height="8" fill="#111"/>
+    <rect x="8" y="2" width="20" height="4" rx="0.5" fill="#f0ede8" opacity="0.6"/>
+    <rect x="8" y="16" width="48" height="8" rx="0" fill="#f0ede8" opacity="0.85"/>
+    <rect x="8" y="28" width="32" height="2" rx="0" fill="#b85c38" opacity="0.8"/>
+    <rect x="8" y="34" width="44" height="1" rx="0" fill="#242424"/>
+    <rect x="8" y="38" width="20" height="6" rx="0" fill="#b85c38" opacity="0.7"/>
+  </svg>
+</template>
+</body>
+</html>
